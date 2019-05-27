@@ -1,4 +1,5 @@
-﻿var stateTable = // 根据编译原理做的有限自动机
+﻿
+var stateTable = // 根据编译原理做的有限自动机
 [
     /*                   0    1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29|-1是退出 */
     /*  +, -        */ [ 25, -1, -1, -1, -1, -1, -1, -1,  9, -1, 10, -1, 12, -1, 29, -1, -1, 17, 19, 19, 19, -1, 22, 22, -1, -1, 28, 27, 28, 29],
@@ -105,21 +106,22 @@ function HighlightString(str, keylist, obj){
         else{                                       // 处理富文本
             var h = -1;
             var rtKey = ["img", "plot", "---", "#"]  
-            rStr = rStr.split(/[ \[ \] ]/g);        // 先按空格和定界符分隔, 以便判断关键词与符号
+            rStr = rStr.split(/[\[ \] \n]/g);       // 先按空格和定界符分隔, 以便判断关键词与符号
             for(var i = 0; i < rStr.length; i++){   // 去掉空字符串避免干扰
                 if(rStr[i] == ''){
-                arr.splice(i,1);
+                    rStr.splice(i,1);
                 i = i-1;
                 }
             }
             switch ( rtKey.indexOf(rStr[1]) ){
-                case 0: obj.innerHTML += '<img src="' + rStr[2] + '" alt="' + rStr[3] + '" />';
-                case 1: obj.innerHTML += '<div id="' + rStr[3] + '" data-function="' + rStr[2] + '" > </div>';
-                case 2: obj.innerHTML += '<hr />';
-                case 3: document.title = rStr[2]
+                case 0: obj.innerHTML += '<img width="23.333%" src="' + rStr[2] + '" alt="' + rStr[3] + '" /><br /> <span>' + rStr[3] + '</span>';
+                break;   
+                case 1: obj.innerHTML += '<div id="' + rStr[3] + '" data-function="' + rStr[2] + '" > </div>';  break;   
+                case 2: obj.innerHTML += '<hr />';                                                              break;                                           
+                case 3: document.title = rStr[2]; obj.innerHTML += "<h1>" + rStr[2] + "</h1><hr />";        break;                                            
             }
             // 对于多个井号的, 需要按井号的数量确定h级别
-            if ( rtKey.indexOf(rStr[1][0]) == '#' && rtKey.indexOf(rStr[1][rStr[1].length - 1]) == '#' && rStr[1].length < 7 )
+            if ( rStr[1][0] == "#" && rStr[1][rStr[1].length - 1] == "#" && rStr[1].length > 1 && rStr[1].length < 7 )
                 obj.innerHTML += '<h' + rStr[1].length + '>' + rStr[3] + '</h' + rStr[1].length + '>';
             rStr = "";
         }

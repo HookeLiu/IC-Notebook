@@ -1,0 +1,42 @@
+html{
+    font-family: '等距更纱黑体 T SC', monospace;
+    src: url('sarasa-monoT-sc-regular.ttf');
+    font-size: 18px;
+}
+.RichHighLight_error
+{
+    background-color: #ff2200;
+    color: #ffffff;
+}
+.RichHighLight_hexNumber,
+.RichHighLight_number
+{
+    color: #752100;
+}
+.RichHighLight_symbol,
+.RichHighLight_maySymbol,
+.RichHighLight_ident
+{
+    color: #000000;
+}
+.RichHighLight_comment_H,
+.RichHighLight_comment_mul,
+.RichHighLight_comment_single
+{
+    color:#69b076;
+}
+.RichHighLight_comment_HTML_H,
+.RichHighLight_comment_HTML_mul,
+.RichHighLight_comment_HTML_single
+{
+    color:#21a657;
+}
+.RichHighLight_char,
+.RichHighLight_string
+{
+    color: #f08300;
+}
+.RichHighLight_keyword1
+{
+    color: #3e62ad;
+}
